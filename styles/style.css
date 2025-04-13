@@ -94,3 +94,25 @@ body {
     border-bottom: 2px solid #ff6000;
     color: #ff6000;
 }
+
+.quick-links {
+    display: flex;
+    gap: 12px;
+    padding: 20px 30px;
+    overflow-x: auto;
+    background-color: white;
+}
+.quick-link-card {
+    background-color: orange;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.quick-link-card:hover {
+    background-color: #e68a00;
+}
