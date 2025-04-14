@@ -47,3 +47,32 @@ export const SLIDER_API = "https://run.mocky.io/v3/4c61a288-d8d9-4024-81f6-fc8fb
 //         "title": "Kampanya 8"
 //     }
 // ]
+
+export const ELECTRONICS_API = "https://run.mocky.io/v3/72f0c11e-7d8e-413b-a90c-22c6ae383963";
+
+// [
+//     {
+//         "image": "assets/electronics-section/p1.jpg",
+//         "title": "Kablosuz Kulaklık",
+//         "price": "799 TL",
+//         "rating": 4.5
+//     },
+//     {
+//         "image": "assets/electronics-section/p2.jpg",
+//         "title": "Bluetooth Hoparlör",
+//         "price": "599 TL",
+//         "rating": 4.0
+//     },
+//     {
+//         "image": "assets/electronics-section/p3.jpg",
+//         "title": "Gaming Mouse",
+//         "price": "399 TL",
+//         "rating": 3.5
+//     },
+//     {
+//         "image": "assets/electronics-section/p4.jpg",
+//         "title": "Laptop Soğutucu",
+//         "price": "329 TL",
+//         "rating": 4.2
+//     }
+// ]

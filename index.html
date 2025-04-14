@@ -8,81 +8,96 @@
 </head>
 <body>
 
+<div class="color-bar">
+    <div class="segment orange"></div>
+    <div class="segment light-blue"></div>
+    <div class="segment purple"></div>
+    <div class="segment green"></div>
+    <div class="segment dark-purple"></div>
+</div>
+
+<nav class="main-nav">
+    <ul class="menu">
+        <li class="menu-item has-submenu">Elektronik
+            <ul class="submenu">
+                <li><a href="#">Bilgisayar/Tablet <span>›</span></a></li>
+                <li><a href="#">Yazıcılar & Projeksiyon <span>›</span></a></li>
+                <li><a href="#">Telefon & Telefon Aksesuarları <span>›</span></a></li>
+                <li><a href="#">TV, Görüntü & Ses Sistemleri <span>›</span></a></li>
+                <li><a href="#">Beyaz Eşya <span>›</span></a></li>
+                <li><a href="#">Klima ve Isıtıcılar <span>›</span></a></li>
+                <li><a href="#">Elektrikli Ev Aletleri <span>›</span></a></li>
+                <li><a href="#">Foto & Kamera <span>›</span></a></li>
+                <li><a href="#">Oyun & Oyun Konsolları <span>›</span></a></li>
+            </ul>
+        </li>
+
+        <li class="divider"></li>
+
+        <li class="menu-item has-submenu">Moda
+            <ul class="submenu">
+                <li><a href="#">Kadın Giyim <span>›</span></a></li>
+                <li><a href="#">Erkek Giyim <span>›</span></a></li>
+                <li><a href="#">Ayakkabı & Çanta <span>›</span></a></li>
+                <li><a href="#">Spor Giyim <span>›</span></a></li>
+                <li><a href="#">Aksesuar & Takı <span>›</span></a></li>
+                <li><a href="#">İç Giyim <span>›</span></a></li>
+                <li><a href="#">Plaj Giyim <span>›</span></a></li>
+                <li><a href="#">Çocuk Giyim <span>›</span></a></li>
+            </ul>
+        </li>
+
+        <li class="divider"></li>
+
+        <li class="menu-item">Ev, Yaşam,<br>Kırtasiye, Ofis</li>
+        <li class="divider"></li>
+        <li class="menu-item">Oto, Bahçe, Yapı<br>Market</li>
+        <li class="divider"></li>
+        <li class="menu-item">Anne, Bebek,<br>Oyuncak</li>
+        <li class="divider"></li>
+        <li class="menu-item">Spor,<br>Outdoor</li>
+        <li class="divider"></li>
+        <li class="menu-item">Kozmetik,<br>Kişisel Bakım</li>
+        <li class="divider"></li>
+        <li class="menu-item">Süpermarket,<br>Pet Shop</li>
+        <li class="divider"></li>
+        <li class="menu-item">Kitap, Müzik,<br>Film, Hobi</li>
+    </ul>
+</nav>
+
 <div class="page-container">
-
-    <!-- Sticky Nav -->
-    <nav class="main-nav">
-        <ul class="menu">
-            <li class="menu-item has-submenu">Elektronik
-                <ul class="submenu">
-                    <li><a href="#">Bilgisayar/Tablet <span>›</span></a></li>
-                    <li><a href="#">Yazıcılar & Projeksiyon <span>›</span></a></li>
-                    <li><a href="#">Telefon & Telefon Aksesuarları <span>›</span></a></li>
-                    <li><a href="#">TV, Görüntü & Ses Sistemleri <span>›</span></a></li>
-                    <li><a href="#">Beyaz Eşya <span>›</span></a></li>
-                    <li><a href="#">Klima ve Isıtıcılar <span>›</span></a></li>
-                    <li><a href="#">Elektrikli Ev Aletleri <span>›</span></a></li>
-                    <li><a href="#">Foto & Kamera <span>›</span></a></li>
-                    <li><a href="#">Oyun & Oyun Konsolları <span>›</span></a></li>
-                </ul>
-            </li>
-
-            <div class="divider"></div>
-            <li class="menu-item has-submenu">Moda
-                <ul class="submenu">
-                    <li><a href="#">Kadın Giyim <span>›</span></a></li>
-                    <li><a href="#">Erkek Giyim <span>›</span></a></li>
-                    <li><a href="#">Ayakkabı & Çanta <span>›</span></a></li>
-                    <li><a href="#">Spor Giyim <span>›</span></a></li>
-                    <li><a href="#">Aksesuar & Takı <span>›</span></a></li>
-                    <li><a href="#">İç Giyim <span>›</span></a></li>
-                    <li><a href="#">Plaj Giyim <span>›</span></a></li>
-                    <li><a href="#">Çocuk Giyim <span>›</span></a></li>
-                </ul>
-            </li>
-
-            <div class="divider"></div>
-            <li class="menu-item">Ev, Yaşam,<br>Kırtasiye, Ofis</li>
-            <div class="divider"></div>
-            <li class="menu-item">Oto, Bahçe, Yapı<br>Market</li>
-            <div class="divider"></div>
-            <li class="menu-item">Anne, Bebek,<br>Oyuncak</li>
-            <div class="divider"></div>
-            <li class="menu-item">Spor,<br>Outdoor</li>
-            <div class="divider"></div>
-            <li class="menu-item">Kozmetik,<br>Kişisel Bakım</li>
-            <div class="divider"></div>
-            <li class="menu-item">Süpermarket,<br>Pet Shop</li>
-            <div class="divider"></div>
-            <li class="menu-item">Kitap, Müzik,<br>Film, Hobi</li>
-        </ul>
-    </nav>
-
     <!-- Quick Links -->
     <section class="quick-links" id="quick-links"></section>
 
-    <!-- Main Slider -->
-    <div class="campaign-slider-wrapper">
-        <div class="campaign-slider-track" id="main-slider"></div>
+    <!-- Slider + Electronics Layout -->
+    <div class="slider-and-electronics">
+        <!-- Main Slider (Left Side) -->
+        <div class="campaign-slider-wrapper">
+            <div class="campaign-slider-track" id="main-slider"></div>
 
-        <button class="campaign-slider-btn left" id="slide-left">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                <polyline points="15 18 9 12 15 6" />
-            </svg>
-        </button>
+            <!-- Slider Controls -->
+            <button class="campaign-slider-btn left" id="slide-left">‹</button>
+            <button class="campaign-slider-btn right" id="slide-right">›</button>
 
-        <button class="campaign-slider-btn right" id="slide-right">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                <polyline points="9 18 15 12 9 6" />
-            </svg>
-        </button>
+            <!-- Slider Indicator -->
+            <div class="campaign-slide-indicator" id="slide-indicator">1 / 10</div>
+        </div>
 
-        <div class="campaign-slide-indicator" id="slide-indicator">1 / 10</div>
+        <!-- Electronics Section (Right Side) -->
+        <div class="electronics-products-wrapper">
+            <div class="electronics-slider-inner">
+                <button class="product-slider-btn left" id="product-slide-left">‹</button>
+
+                <div class="product-slider-container">
+                    <div class="product-slider-track" id="electronics-slider"></div>
+                </div>
+
+                <button class="product-slider-btn right" id="product-slide-right">›</button>
+            </div>
+        </div>
     </div>
-
 </div>
 
 <script type="module" src="./dist/index.js"></script>
-
 </body>
 </html>
