@@ -4,6 +4,9 @@
     box-sizing: border-box;
 }
 body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
 }
@@ -22,7 +25,7 @@ body {
     display: flex;
     align-items: center;
     list-style: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     overflow: visible;
 }
 .menu-item {
@@ -33,15 +36,16 @@ body {
     white-space: nowrap;
     padding: 0 10px;
     line-height: 1.4;
-    min-width: 90px;
+    min-width: 100px;
     cursor: pointer;
+
 }
 
 .divider {
     height: 20px;
     width: 1px;
     background-color: #ccc;
-    margin: 0 10px;
+    margin: 0 20px;
 }
 
 .menu-item.has-submenu {
@@ -93,4 +97,56 @@ body {
 .menu-item.has-submenu:hover {
     border-bottom: 2px solid #ff6000;
     color: #ff6000;
+}
+
+.quick-links {
+    display: flex;
+    gap: 12px;
+    padding: 20px 30px;
+    overflow-x: auto;
+    background-color: white;
+    scroll-behavior: smooth;
+    cursor: grab;
+}
+.quick-links:active {
+    cursor: grabbing;
+}
+
+.quick-link-card {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 120px;
+    flex-shrink: 0;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.card-top {
+    background-color: #007bff;
+    color: white;
+    padding: 4px 6px;
+    font-size: 11px;
+    font-weight: bold;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-title {
+    background-color: orange;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 12px 8px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-category {
+    font-size: 11px;
+    color: #555;
+    padding: 6px 4px 10px;
 }
