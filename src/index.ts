@@ -1,23 +1,5 @@
-
-const QUICK_LINKS_API = "https://run.mocky.io/v3/d3d75ffd-97a5-4ea5-9824-91c60faa72d8";
-
-// [
-//     { "topText": "Bu Fiyatlar Kaçmaz", "title": "Elektronik", "category": "Elektronik" },
-//     { "topText": "Fırsatlarla Dolu", "title": "Çeyiz ALIŞVERİŞİ", "category": "Alışverişe Başla" },
-//     { "topText": "Kredi Limitini Gör", "title": "%0'DAN BAŞLAYAN FAİZ", "category": "Hepsipay" },
-//     { "topText": "İndirimli Fiyatlar", "title": "DÖRT DÖRTLÜK FIRSATLAR", "category": "Alışverişe Başla" },
-//     { "topText": "Fırsatları Keşfet", "title": "ALIŞVERİŞİN TOP LİSTESİ", "category": "Sevilen Ürünler" },
-//     { "topText": "Her Pazar Fırsat Var", "title": "NET İNDİRİM PAZARI", "category": "Sakın Kaçırma" },
-//     { "topText": "Aradığın Fırsatlar", "title": "Ev Elektroniği", "category": "Elektronik" },
-//     { "topText": "Büyük İndirim", "title": "OYUNCAK GÜNLERİ", "category": "Sevilen Oyuncaklar" }
-// ]
-
-type QuickLink = {
-    topText: string;
-    title: string;
-    category: string;
-};
-
+import {QUICK_LINKS_API, SLIDER_API} from "./constants/api.js";
+import {QuickLink, SliderItem} from "./constants/types.js";
 
 const fetchQuickLinks = async () => {
     try {
@@ -44,3 +26,72 @@ const fetchQuickLinks = async () => {
 };
 
 fetchQuickLinks();
+
+
+
+
+let currentSlide = 0;
+let totalSlides = 0;
+
+
+const fetchMainSlider = async () => {
+    try {
+        const res = await fetch(SLIDER_API);
+        const data: SliderItem[] = await res.json();
+        const track = document.getElementById("main-slider");
+        if (!track) return;
+
+        totalSlides = data.length;
+
+        data.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.className = "slider-item";
+            if (index === 0) div.classList.add("active");
+
+            div.innerHTML = `
+                <img src="${item.image}" alt="${item.title}" />
+            `;
+            track.appendChild(div);
+        });
+
+        setupSliderControls();
+    } catch (err) {
+        console.error("Slider fetch error:", err);
+    }
+    document.getElementById("slide-indicator")!.textContent = `1 / ${totalSlides}`;
+
+};
+
+const setupSliderControls = () => {
+    const track = document.getElementById("main-slider")!;
+    const leftBtn = document.getElementById("slide-left")!;
+    const rightBtn = document.getElementById("slide-right")!;
+
+    const goToSlide = (index: number) => {
+        const slides = Array.from(track.children);
+        slides.forEach(slide => slide.classList.remove("active"));
+        if (slides[index]) slides[index].classList.add("active");
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        // update indicator
+        const indicator = document.getElementById("slide-indicator");
+        if (indicator) {
+            indicator.textContent = `${index + 1} / ${totalSlides}`;
+        }
+    };
+
+
+    leftBtn.addEventListener("click", () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        goToSlide(currentSlide);
+    });
+
+    rightBtn.addEventListener("click", () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        goToSlide(currentSlide);
+    });
+};
+
+
+
+fetchMainSlider();
