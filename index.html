@@ -58,31 +58,35 @@
         </ul>
     </nav>
 
+
     <!-- Quick Links -->
     <section class="quick-links" id="quick-links"></section>
 
-    <!-- Main Slider -->
-    <div class="campaign-slider-wrapper">
-        <div class="campaign-slider-track" id="main-slider"></div>
+    <!-- Slider + Electronics Layout -->
+    <div class="slider-and-electronics">
 
-        <button class="campaign-slider-btn left" id="slide-left">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                <polyline points="15 18 9 12 15 6" />
-            </svg>
-        </button>
+        <!-- Main Slider (Left Side) -->
+        <div class="campaign-slider-wrapper">
+            <div class="campaign-slider-track" id="main-slider"></div>
 
-        <button class="campaign-slider-btn right" id="slide-right">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                <polyline points="9 18 15 12 9 6" />
-            </svg>
-        </button>
+            <!-- Slider Controls -->
+            <button class="campaign-slider-btn left" id="slide-left">‹</button>
+            <button class="campaign-slider-btn right" id="slide-right">›</button>
 
-        <div class="campaign-slide-indicator" id="slide-indicator">1 / 10</div>
+            <!-- Slider Indicator -->
+            <div class="campaign-slide-indicator" id="slide-indicator">1 / 10</div>
+        </div>
+
+        <div class="electronics-products-wrapper">
+            <div class="electronics-slider-inner">
+                <div class="product-slider-container">
+                    <div class="product-slider-track" id="electronics-slider"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
-
 </div>
-
 <script type="module" src="./dist/index.js"></script>
-
 </body>
 </html>
