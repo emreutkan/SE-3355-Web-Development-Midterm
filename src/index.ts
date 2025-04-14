@@ -1,7 +1,9 @@
-
 import { ELECTRONICS_API, QUICK_LINKS_API, SLIDER_API } from "./constants/api.js";
 import { DealItem, QuickLink, SliderItem } from "./constants/types.js";
 
+// ---------------------
+// QUICK LINKS FETCH
+// ---------------------
 const fetchQuickLinks = async () => {
     try {
         const res = await fetch(QUICK_LINKS_API);
@@ -27,7 +29,9 @@ const fetchQuickLinks = async () => {
 
 fetchQuickLinks();
 
-// MAIN SLIDER
+// ---------------------
+// MAIN SLIDER FETCH & SETUP
+// ---------------------
 let currentSlide = 0;
 let totalSlides = 0;
 
@@ -90,6 +94,9 @@ const setupSliderControls = () => {
 
 fetchMainSlider();
 
+// ---------------------
+// ELECTRONICS DEALS FETCH
+// ---------------------
 const fetchElectronicsDeals = async () => {
     try {
         const res = await fetch(ELECTRONICS_API);
@@ -113,22 +120,20 @@ const fetchElectronicsDeals = async () => {
                 : "";
 
             const stars = getStarsHTML(item.rating);
-
             const addToCartBtn = `<button class="add-to-cart">Sepete Ekle</button>`;
 
             card.innerHTML = `
               <div class="deal-card-image">
-                ${couponBadge}
                 <img src="${item.image}" alt="${item.title}" />
               </div>
               <div class="deal-card-content">
-                <div class="stars">${stars}</div>
+                ${couponBadge}
                 <h3>${item.title}</h3>
+                <div class="stars">${stars}</div>
                 <p>${item.price}</p>
                 ${addToCartBtn}
               </div>
             `;
-
 
             const btn = card.querySelector(".add-to-cart");
             if (btn) {
@@ -141,6 +146,8 @@ const fetchElectronicsDeals = async () => {
             container.appendChild(card);
         });
 
+        // Now that the cards are loaded, set up the electronics slider
+        setupElectronicsSlider();
     } catch (err) {
         console.error("Electronics fetch error:", err);
     }
@@ -157,4 +164,62 @@ const getStarsHTML = (rating: number) => {
 
     return html;
 };
+
 fetchElectronicsDeals();
+function setupElectronicsSlider() {
+    const sliderContainer = document.querySelector(".product-slider-container") as HTMLElement;
+    const sliderTrack = document.getElementById("electronics-slider") as HTMLElement;
+    const leftBtn = document.getElementById("product-slide-left") as HTMLButtonElement;
+    const rightBtn = document.getElementById("product-slide-right") as HTMLButtonElement;
+
+    const cards = Array.from(sliderTrack.children) as HTMLElement[];
+    const totalCards = cards.length;
+
+    let currentIndex = 0;
+
+    const GAP = 12;
+
+    function updateSliderButtons() {
+        if (currentIndex === 0) {
+            leftBtn.style.display = "none";
+        } else {
+            leftBtn.style.display = "block";
+        }
+
+    }
+
+
+    function centerCard(index: number) {
+        if (!sliderContainer || !sliderTrack || cards.length === 0) return;
+
+        if (index === 0) {
+            sliderTrack.style.transform = `translateX(0px)`;
+            return;
+        }
+
+        const containerWidth = sliderContainer.getBoundingClientRect().width;
+        const cardWidth = cards[index].getBoundingClientRect().width;
+        const cardCenter = index * (cardWidth + GAP) + (cardWidth / 2);
+        const offset = (containerWidth / 2) - cardCenter;
+        sliderTrack.style.transform = `translateX(${offset}px)`;
+    }
+
+    leftBtn?.addEventListener("click", () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            centerCard(currentIndex);
+            updateSliderButtons();
+        }
+    });
+
+    rightBtn?.addEventListener("click", () => {
+        if (currentIndex < totalCards - 1) {
+            currentIndex++;
+            centerCard(currentIndex);
+            updateSliderButtons();
+        }
+    });
+
+    centerCard(currentIndex);
+    updateSliderButtons();
+}
