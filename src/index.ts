@@ -1,5 +1,5 @@
-import { ELECTRONICS_API, QUICK_LINKS_API, SLIDER_API } from "./constants/api.js";
-import { DealItem, QuickLink, SliderItem } from "./constants/types.js";
+import {ELECTRONICS_API, QUICK_LINKS_API, RECOMMENDED_API, SLIDER_API} from "./constants/api.js";
+import {DealItem, QuickLink, RecommendedItem, SliderItem} from "./constants/types.js";
 
 // ---------------------
 // QUICK LINKS FETCH
@@ -223,3 +223,82 @@ function setupElectronicsSlider() {
     centerCard(currentIndex);
     updateSliderButtons();
 }
+
+
+const FAVORITES_KEY = "recommendedFavorites";
+
+const fetchRecommended = async () => {
+    try {
+        const res = await fetch(RECOMMENDED_API);
+        const data: RecommendedItem[] = await res.json();
+        renderRecommended(data);
+    } catch (err) {
+        console.error("Recommended fetch error:", err);
+    }
+};
+
+const renderRecommended = (items: RecommendedItem[]) => {
+    const container = document.getElementById("recommended-section");
+    if (!container) return;
+
+    const title = document.createElement("h2");
+    title.className = "recommended-title";
+    title.textContent = "sana özel öneriler";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "recommended-list";
+
+    const favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+
+    items.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "recommended-card";
+
+        card.innerHTML = `
+            <div class="recommended-img-wrapper">
+                <img src="${item.image}" alt="${item.name}">
+                <button class="favorite-btn">${favorites.includes(item.id) ? "♥" : "♡"}</button>
+            </div>
+            <div class="recommended-info">
+                <p class="product-name">${item.name}</p>
+                <div class="star-review">
+                    <span class="stars">${getStars(item.rating)}</span>
+                    <span class="review-count">(${item.reviews})</span>
+                </div>
+                <p class="product-price">${item.price} TL</p>
+            </div>
+            <button class="add-cart-btn">Sepete Ekle</button>
+        `;
+
+        const favBtn = card.querySelector(".favorite-btn")!;
+        favBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const index = favorites.indexOf(item.id);
+            if (index > -1) {
+                favorites.splice(index, 1);
+                favBtn.textContent = "♡";
+            } else {
+                favorites.push(item.id);
+                favBtn.textContent = "♥";
+            }
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+        });
+
+        wrapper.appendChild(card);
+    });
+
+    container.append(title, wrapper);
+};
+
+const getStars = (rating: number): string => {
+    const full = Math.floor(rating);
+    const half = rating % 1 >= 0.5;
+    let html = "";
+    for (let i = 0; i < full; i++) html += "★";
+    if (half) html += "½";
+    while (html.length < 5) html += "☆";
+    return html;
+};
+
+fetchRecommended();

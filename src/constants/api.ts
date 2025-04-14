@@ -76,3 +76,39 @@ export const ELECTRONICS_API = "https://run.mocky.io/v3/72f0c11e-7d8e-413b-a90c-
 //         "rating": 4.2
 //     }
 // ]
+
+
+export const RECOMMENDED_API = "https://run.mocky.io/v3/13dcf9b5-f924-4cf5-83be-63021fb99190";
+
+// [
+//     {
+//         "id": 1,
+//         "img": "assets/carousel/c1.jpg",
+//         "name": "Kablosuz Mouse",
+//         "price": "249"
+//     },
+//     {
+//         "id": 2,
+//         "img": "assets/carousel/c2.jpg",
+//         "name": "Gaming Klavye",
+//         "price": "799"
+//     },
+//     {
+//         "id": 3,
+//         "img": "assets/carousel/c3.jpg",
+//         "name": "Powerbank 20.000mAh",
+//         "price": "599"
+//     },
+//     {
+//         "id": 4,
+//         "img": "assets/carousel/c4.jpg",
+//         "name": "Kamera Tripodu",
+//         "price": "189"
+//     },
+//     {
+//         "id": 5,
+//         "img": "assets/carousel/c5.jpg",
+//         "name": "Bluetooth Kulaklık",
+//         "price": "899"
+//     }
+// ]
