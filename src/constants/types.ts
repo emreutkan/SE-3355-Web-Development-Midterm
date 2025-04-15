@@ -23,9 +23,14 @@ export interface DealItem {
 
 export interface RecommendedItem {
     id: number;
-    name: string;
-    image: string;
-    price: string;
+    title: string;
+    img: string;
+    label?: string;
+    paymentNote?: string;
+    oldPrice?: string;
+    discountedPrice: string;
+    cartPrice?: string;
     rating: number;
-    reviews: number;
+    votes: number;
+    extra?: string;
 }
