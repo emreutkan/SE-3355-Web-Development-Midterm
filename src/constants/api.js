@@ -1,4 +1,4 @@
-export const QUICK_LINKS_API = "https://run.mocky.io/v3/d3d75ffd-97a5-4ea5-9824-91c60faa72d8";
+export const QUICK_LINKS_API = "https://run.mocky.io/v3/b044a3bc-af4b-49fb-abc2-ad1a49c18cb2";
 
 // [
 //     { "topText": "Bu Fiyatlar Kaçmaz", "title": "Elektronik", "category": "Elektronik" },
@@ -11,7 +11,7 @@ export const QUICK_LINKS_API = "https://run.mocky.io/v3/d3d75ffd-97a5-4ea5-9824-
 //     { "topText": "Büyük İndirim", "title": "OYUNCAK GÜNLERİ", "category": "Sevilen Oyuncaklar" }
 // ]
 
-export const SLIDER_API = "https://run.mocky.io/v3/4c61a288-d8d9-4024-81f6-fc8fbe21548a";
+export const SLIDER_API = "https://run.mocky.io/v3/ecea7eb7-cb25-48cc-ad1c-1444424f6add";
 
 // [
 //     {

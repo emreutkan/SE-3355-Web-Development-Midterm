@@ -2,13 +2,8 @@
   "name": "se-3355-web-development-midterm-1",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "tsc"
-  },
+  "main": "index.js",
+  "scripts": {},
   "dependencies": {},
-  "devDependencies": {
-    "typescript": "^5.5.3"
-  },
   "private": true
 }

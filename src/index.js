@@ -1,5 +1,7 @@
+// ---------------------
+// API IMPORTS
+// ---------------------
 import { ELECTRONICS_API, QUICK_LINKS_API, RECOMMENDED_API, SLIDER_API } from "./constants/api.js";
-import { DealItem, QuickLink, RecommendedItem, SliderItem } from "./constants/types.js";
 
 // ---------------------
 // QUICK LINKS FETCH
@@ -7,7 +9,7 @@ import { DealItem, QuickLink, RecommendedItem, SliderItem } from "./constants/ty
 const fetchQuickLinks = async () => {
     try {
         const res = await fetch(QUICK_LINKS_API);
-        const data: QuickLink[] = await res.json();
+        const data = await res.json();
         const container = document.getElementById("quick-links");
         if (!container) return;
 
@@ -38,7 +40,7 @@ let totalSlides = 0;
 const fetchMainSlider = async () => {
     try {
         const res = await fetch(SLIDER_API);
-        const data: SliderItem[] = await res.json();
+        const data = await res.json();
         const track = document.getElementById("main-slider");
         if (!track) return;
 
@@ -58,15 +60,16 @@ const fetchMainSlider = async () => {
         console.error("Slider fetch error:", err);
     }
 
-    document.getElementById("slide-indicator")!.textContent = `1 / ${totalSlides}`;
+    const indicator = document.getElementById("slide-indicator");
+    if (indicator) indicator.textContent = `1 / ${totalSlides}`;
 };
 
 const setupSliderControls = () => {
-    const track = document.getElementById("main-slider")!;
-    const leftBtn = document.getElementById("slide-left")!;
-    const rightBtn = document.getElementById("slide-right")!;
+    const track = document.getElementById("main-slider");
+    const leftBtn = document.getElementById("slide-left");
+    const rightBtn = document.getElementById("slide-right");
 
-    const goToSlide = (index: number) => {
+    const goToSlide = (index) => {
         const slides = Array.from(track.children);
         slides.forEach(slide => slide.classList.remove("active"));
         if (slides[index]) slides[index].classList.add("active");
@@ -96,7 +99,7 @@ fetchMainSlider();
 const fetchElectronicsDeals = async () => {
     try {
         const res = await fetch(ELECTRONICS_API);
-        const data: DealItem[] = await res.json();
+        const data = await res.json();
         const container = document.getElementById("electronics-slider");
         if (!container) return;
 
@@ -142,7 +145,7 @@ const fetchElectronicsDeals = async () => {
     }
 };
 
-const getStars = (rating: number): string => {
+const getStars = (rating) => {
     const percentage = (Math.round(rating * 2) / 2) * 20;
     return `<span class="stars" style="--rating-width: ${percentage}%"></span>`;
 };
@@ -150,12 +153,12 @@ const getStars = (rating: number): string => {
 fetchElectronicsDeals();
 
 function setupElectronicsSlider() {
-    const sliderContainer = document.querySelector(".product-slider-container") as HTMLElement;
-    const sliderTrack = document.getElementById("electronics-slider") as HTMLElement;
-    const leftBtn = document.getElementById("product-slide-left") as HTMLButtonElement;
-    const rightBtn = document.getElementById("product-slide-right") as HTMLButtonElement;
+    const sliderContainer = document.querySelector(".product-slider-container");
+    const sliderTrack = document.getElementById("electronics-slider");
+    const leftBtn = document.getElementById("product-slide-left");
+    const rightBtn = document.getElementById("product-slide-right");
 
-    const cards = Array.from(sliderTrack.children) as HTMLElement[];
+    const cards = Array.from(sliderTrack.children);
     const totalCards = cards.length;
 
     let currentIndex = 0;
@@ -165,7 +168,7 @@ function setupElectronicsSlider() {
         leftBtn.style.display = currentIndex === 0 ? "none" : "block";
     };
 
-    const centerCard = (index: number) => {
+    const centerCard = (index) => {
         if (!sliderContainer || !sliderTrack || cards.length === 0) return;
 
         if (index === 0) {
@@ -208,54 +211,52 @@ const FAVORITES_KEY = "recommendedFavorites";
 const fetchRecommended = async () => {
     try {
         const res = await fetch(RECOMMENDED_API);
-        const data: RecommendedItem[] = await res.json();
+        const data = await res.json();
         renderRecommended(data);
     } catch (err) {
         console.error("Recommended fetch error:", err);
     }
 };
 
-const renderRecommended = (items: RecommendedItem[]) => {
-    const container = document.getElementById("recommended-section");
-    if (!container) return;
+const getDiscount = (oldPrice, newPrice) => {
+    const oldNum = parseFloat(oldPrice.replace(",", ".").replace(" TL", "").replace(".", "").trim());
+    const newNum = parseFloat(newPrice.replace(",", ".").replace(" TL", "").replace(".", "").trim());
+    return Math.round(((oldNum - newNum) / oldNum) * 100);
+};
 
-    const title = document.createElement("h2");
-    title.className = "recommended-title";
-    title.textContent = "sana özel öneriler";
-
-    const wrapper = document.createElement("div");
-    wrapper.className = "recommended-list";
-
+const renderRecommended = (items) => {
+    const wrapper = document.getElementById("recommended-slider");
     const favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
 
+    wrapper.innerHTML = "";
     items.forEach((item) => {
         const card = document.createElement("div");
         card.className = "recommended-card";
 
         card.innerHTML = `
-    <div class="recommended-img-wrapper">
-        <img src="${item.img}" alt="${item.title}">
-        <button class="favorite-btn">${favorites.includes(item.id) ? "♥" : "♡"}</button>
-        ${item.label ? `<div class="label-badge">${item.label.replace(/\n/g, "<br>")}</div>` : ""}
-    </div>
-    <div class="recommended-info">
-        ${item.paymentNote ? `<div class="payment-note">${item.paymentNote}</div>` : ""}
-        <p class="product-name">${item.title}</p>
-        <div class="star-review">
-            ${getStars(item.rating)}
-            <span class="review-count">(${item.votes})</span>
-        </div>
-        ${
+            <div class="recommended-img-wrapper">
+                <img src="${item.img}" alt="${item.title}">
+                <button class="favorite-btn">${favorites.includes(item.id) ? "♥" : "♡"}</button>
+                ${item.label ? `<div class="label-badge">${item.label.replace(/\n/g, "<br>")}</div>` : ""}
+            </div>
+            <div class="recommended-info">
+                ${item.paymentNote ? `<div class="payment-note">${item.paymentNote}</div>` : ""}
+                <p class="product-name">${item.title}</p>
+                <div class="star-review">
+                    ${getStars(item.rating)}
+                    <span class="review-count">(${item.votes})</span>
+                </div>
+                ${
             item.oldPrice
                 ? `<div><span class="old-price">${item.oldPrice}</span><span class="discount">%${getDiscount(item.oldPrice, item.discountedPrice)} indirim</span></div>`
                 : ""
         }
-        <p class="product-price">${item.discountedPrice}</p>
-    </div>
-    <button class="add-cart-btn">Sepete Ekle</button>
-`;
+                <p class="product-price">${item.discountedPrice}</p>
+            </div>
+            <button class="add-cart-btn">Sepete Ekle</button>
+        `;
 
-        const favBtn = card.querySelector(".favorite-btn")!;
+        const favBtn = card.querySelector(".favorite-btn");
         favBtn.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -273,13 +274,21 @@ const renderRecommended = (items: RecommendedItem[]) => {
         wrapper.appendChild(card);
     });
 
-    container.append(title, wrapper);
+    setupRecommendedSlider();
 };
 
-const getDiscount = (oldPrice: string, newPrice: string): number => {
-    const oldNum = parseFloat(oldPrice.replace(",", ".").replace(" TL", "").replace(".", "").trim());
-    const newNum = parseFloat(newPrice.replace(",", ".").replace(" TL", "").replace(".", "").trim());
-    return Math.round(((oldNum - newNum) / oldNum) * 100);
-};
+function setupRecommendedSlider() {
+    const container = document.getElementById("recommended-slider");
+    const leftBtn = document.getElementById("recommended-left");
+    const rightBtn = document.getElementById("recommended-right");
+
+    leftBtn.addEventListener("click", () => {
+        container.scrollBy({ left: -400, behavior: "smooth" });
+    });
+
+    rightBtn.addEventListener("click", () => {
+        container.scrollBy({ left: 400, behavior: "smooth" });
+    });
+}
 
 fetchRecommended();
