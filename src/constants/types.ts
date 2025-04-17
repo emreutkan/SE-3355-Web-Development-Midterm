@@ -16,8 +16,21 @@ export interface DealItem {
     price: string;
     rating: number;
     image: string;
-    // New fields for the "second card"-style
-    couponText?: string;       // e.g. "7000 TL'ye 300 TL Kupon"
-    buttonText?: string;       // e.g. "Sepete Ekle"
-    specialBackground?: string; // optionally a color or background
+    couponText?: string;
+    buttonText?: string;
+    specialBackground?: string;
+}
+
+export interface RecommendedItem {
+    id: number;
+    title: string;
+    img: string;
+    label?: string;
+    paymentNote?: string;
+    oldPrice?: string;
+    discountedPrice: string;
+    cartPrice?: string;
+    rating: number;
+    votes: number;
+    extra?: string;
 }

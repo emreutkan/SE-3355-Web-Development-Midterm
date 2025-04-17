@@ -1,5 +1,5 @@
-import { ELECTRONICS_API, QUICK_LINKS_API, SLIDER_API } from "./constants/api.js";
-import { DealItem, QuickLink, SliderItem } from "./constants/types.js";
+import { ELECTRONICS_API, QUICK_LINKS_API, RECOMMENDED_API, SLIDER_API } from "./constants/api.js";
+import { DealItem, QuickLink, RecommendedItem, SliderItem } from "./constants/types.js";
 
 // ---------------------
 // QUICK LINKS FETCH
@@ -49,9 +49,7 @@ const fetchMainSlider = async () => {
             div.className = "slider-item";
             if (index === 0) div.classList.add("active");
 
-            div.innerHTML = `
-                <img src="${item.image}" alt="${item.title}" />
-            `;
+            div.innerHTML = `<img src="${item.image}" alt="${item.title}" />`;
             track.appendChild(div);
         });
 
@@ -59,7 +57,7 @@ const fetchMainSlider = async () => {
     } catch (err) {
         console.error("Slider fetch error:", err);
     }
-    // Initialize indicator text
+
     document.getElementById("slide-indicator")!.textContent = `1 / ${totalSlides}`;
 };
 
@@ -76,9 +74,7 @@ const setupSliderControls = () => {
         track.style.transform = `translateX(-${index * 100}%)`;
 
         const indicator = document.getElementById("slide-indicator");
-        if (indicator) {
-            indicator.textContent = `${index + 1} / ${totalSlides}`;
-        }
+        if (indicator) indicator.textContent = `${index + 1} / ${totalSlides}`;
     };
 
     leftBtn.addEventListener("click", () => {
@@ -104,22 +100,18 @@ const fetchElectronicsDeals = async () => {
         const container = document.getElementById("electronics-slider");
         if (!container) return;
 
-        // Clear the container
         container.innerHTML = "";
-
-        // Get only the first 3 items to display
         const visible = data.slice(0, 3);
 
         visible.forEach(item => {
             const card = document.createElement("div");
             card.className = "deal-card";
 
-            // Add coupon badge if available
             const couponBadge = item.couponText
                 ? `<div class="coupon-badge">${item.couponText}</div>`
                 : "";
 
-            const stars = getStarsHTML(item.rating);
+            const stars = getStars(item.rating);
             const addToCartBtn = `<button class="add-to-cart">Sepete Ekle</button>`;
 
             card.innerHTML = `
@@ -129,43 +121,34 @@ const fetchElectronicsDeals = async () => {
               <div class="deal-card-content">
                 ${couponBadge}
                 <h3>${item.title}</h3>
-                <div class="stars">${stars}</div>
+                <div class="star-review">
+                    ${stars}
+                </div>
                 <p>${item.price}</p>
                 ${addToCartBtn}
               </div>
             `;
 
-            const btn = card.querySelector(".add-to-cart");
-            if (btn) {
-                btn.addEventListener("click", () => {
-                    console.log(`${item.title} added to cart!`);
-                    alert(`${item.title} sepete eklendi!`);
-                });
-            }
+            card.querySelector(".add-to-cart")?.addEventListener("click", () => {
+                alert(`${item.title} sepete eklendi!`);
+            });
 
             container.appendChild(card);
         });
 
-        // Now that the cards are loaded, set up the electronics slider
         setupElectronicsSlider();
     } catch (err) {
         console.error("Electronics fetch error:", err);
     }
 };
 
-const getStarsHTML = (rating: number) => {
-    const fullStars = Math.floor(rating);
-    const half = rating % 1 >= 0.5;
-    let html = "";
-
-    for (let i = 0; i < fullStars; i++) html += "★";
-    if (half) html += "½";
-    while (html.length < 5) html += "☆";
-
-    return html;
+const getStars = (rating: number): string => {
+    const percentage = (Math.round(rating * 2) / 2) * 20;
+    return `<span class="stars" style="--rating-width: ${percentage}%"></span>`;
 };
 
 fetchElectronicsDeals();
+
 function setupElectronicsSlider() {
     const sliderContainer = document.querySelector(".product-slider-container") as HTMLElement;
     const sliderTrack = document.getElementById("electronics-slider") as HTMLElement;
@@ -176,20 +159,13 @@ function setupElectronicsSlider() {
     const totalCards = cards.length;
 
     let currentIndex = 0;
-
     const GAP = 12;
 
-    function updateSliderButtons() {
-        if (currentIndex === 0) {
-            leftBtn.style.display = "none";
-        } else {
-            leftBtn.style.display = "block";
-        }
+    const updateSliderButtons = () => {
+        leftBtn.style.display = currentIndex === 0 ? "none" : "block";
+    };
 
-    }
-
-
-    function centerCard(index: number) {
+    const centerCard = (index: number) => {
         if (!sliderContainer || !sliderTrack || cards.length === 0) return;
 
         if (index === 0) {
@@ -202,9 +178,9 @@ function setupElectronicsSlider() {
         const cardCenter = index * (cardWidth + GAP) + (cardWidth / 2);
         const offset = (containerWidth / 2) - cardCenter;
         sliderTrack.style.transform = `translateX(${offset}px)`;
-    }
+    };
 
-    leftBtn?.addEventListener("click", () => {
+    leftBtn.addEventListener("click", () => {
         if (currentIndex > 0) {
             currentIndex--;
             centerCard(currentIndex);
@@ -212,7 +188,7 @@ function setupElectronicsSlider() {
         }
     });
 
-    rightBtn?.addEventListener("click", () => {
+    rightBtn.addEventListener("click", () => {
         if (currentIndex < totalCards - 1) {
             currentIndex++;
             centerCard(currentIndex);
@@ -223,3 +199,115 @@ function setupElectronicsSlider() {
     centerCard(currentIndex);
     updateSliderButtons();
 }
+
+// ---------------------
+// RECOMMENDED PRODUCTS
+// ---------------------
+const FAVORITES_KEY = "recommendedFavorites";
+
+const fetchRecommended = async () => {
+    try {
+        const res = await fetch(RECOMMENDED_API);
+        const data: RecommendedItem[] = await res.json();
+        renderRecommended(data);
+    } catch (err) {
+        console.error("Recommended fetch error:", err);
+    }
+};
+
+const renderRecommended = (items: RecommendedItem[]) => {
+    const wrapper = document.getElementById("recommended-slider")!;
+    const favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+
+    wrapper.innerHTML = "";
+    items.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "recommended-card";
+
+        card.innerHTML = `
+            <div class="recommended-img-wrapper">
+                <img src="${item.img}" alt="${item.title}">
+                <button class="favorite-btn">${favorites.includes(item.id) ? "♥" : "♡"}</button>
+                ${item.label ? `<div class="label-badge">${item.label.replace(/\n/g, "<br>")}</div>` : ""}
+            </div>
+            <div class="recommended-info">
+                ${item.paymentNote ? `<div class="payment-note">${item.paymentNote}</div>` : ""}
+                <p class="product-name">${item.title}</p>
+                <div class="star-review">
+                    ${getStars(item.rating)}
+                    <span class="review-count">(${item.votes})</span>
+                </div>
+                ${
+            item.oldPrice
+                ? `<div><span class="old-price">${item.oldPrice}</span><span class="discount">%${getDiscount(item.oldPrice, item.discountedPrice)} indirim</span></div>`
+                : ""
+        }
+                <p class="product-price">${item.discountedPrice}</p>
+            </div>
+            <button class="add-cart-btn">Sepete Ekle</button>
+        `;
+
+        const favBtn = card.querySelector(".favorite-btn")!;
+        favBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const index = favorites.indexOf(item.id);
+            if (index > -1) {
+                favorites.splice(index, 1);
+                favBtn.textContent = "♡";
+            } else {
+                favorites.push(item.id);
+                favBtn.textContent = "♥";
+            }
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+        });
+
+        wrapper.appendChild(card);
+    });
+
+    setupRecommendedSlider();
+};
+
+function setupRecommendedSlider() {
+    const container = document.getElementById("recommended-slider")!;
+    const leftBtn = document.getElementById("recommended-left")!;
+    const rightBtn = document.getElementById("recommended-right")!;
+    const cards = Array.from(container.getElementsByClassName("recommended-card")) as HTMLElement[];
+
+    if (cards.length === 0) return;
+
+    const cardWidth = cards[0].offsetWidth + 20; // width + gap
+    const visibleCount = 6;
+    let currentIndex = 0;
+
+    leftBtn.addEventListener("click", () => {
+        if (currentIndex > 0) {
+            currentIndex = Math.max(currentIndex - visibleCount, 0);
+            container.scrollTo({ left: currentIndex * cardWidth, behavior: "smooth" });
+        } else {
+            currentIndex = 0;
+            container.scrollTo({ left: 0, behavior: "smooth" });
+        }
+    });
+
+    rightBtn.addEventListener("click", () => {
+        const maxIndex = cards.length - visibleCount;
+        if (currentIndex < maxIndex) {
+            currentIndex = Math.min(currentIndex + visibleCount, maxIndex);
+            container.scrollTo({ left: currentIndex * cardWidth, behavior: "smooth" });
+        } else {
+            currentIndex = 0;
+            container.scrollTo({ left: 0, behavior: "smooth" });
+        }
+    });
+}
+
+
+
+const getDiscount = (oldPrice: string, newPrice: string): number => {
+    const oldNum = parseFloat(oldPrice.replace(",", ".").replace(" TL", "").replace(".", "").trim());
+    const newNum = parseFloat(newPrice.replace(",", ".").replace(" TL", "").replace(".", "").trim());
+    return Math.round(((oldNum - newNum) / oldNum) * 100);
+};
+
+fetchRecommended();

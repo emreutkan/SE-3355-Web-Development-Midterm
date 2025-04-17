@@ -186,7 +186,7 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
     flex: 0.7;
     position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);*/
 }
 
 
@@ -328,10 +328,32 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
 
 .stars {
-    font-size: 13px;
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+    line-height: 1;
     color: #ffc107;
-    margin-bottom: 6px;
+    --rating-width: 0%;
 }
+
+.stars::before {
+    content: "★★★★★";
+    opacity: 0.3;
+}
+
+.stars::after {
+    content: "★★★★★";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--rating-width);
+    overflow: hidden;
+    white-space: nowrap;
+    color: #ffc107;
+}
+
+
+
 
 .deal-card-content h3 {
     font-size: 14px;
@@ -441,3 +463,195 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
     background-color: #4b006e; /* example darker purple */
 }
+
+.recommended-section {
+    /*margin: 10px auto;*/
+    /*padding: 0 20px;*/
+    font-family: "Poppins", sans-serif;
+}
+
+.recommended-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.recommended-list {
+    display: flex;
+    gap: 20px;
+
+}
+
+
+
+
+.recommended-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+
+
+.add-cart-btn {
+    display: none;
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    right: 10px;
+    background-color: #ff6000;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.recommended-card:hover .add-cart-btn {
+    display: block;
+}
+
+
+.recommended-card {
+    flex: 0 0 auto;
+    width: 200px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    position: relative;
+    font-family: Arial, sans-serif;
+    transition: box-shadow 0.2s ease;
+    padding-bottom: 50px; /* space for Sepete Ekle */
+
+}
+
+.recommended-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.recommended-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+}
+
+.recommended-img-wrapper img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    font-size: 16px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+
+.recommended-info {
+    padding: 6px 10px 10px;
+}
+
+.label-badge {
+    background-color: #d1007f;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-weight: bold;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    max-width: 90px;
+    text-align: center;
+    line-height: 1.2;
+    white-space: pre-line;
+}
+
+.payment-note {
+    color: purple;
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.product-name {
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    line-height: 1.4;
+    height: 34px;
+    overflow: hidden;
+}
+
+.star-review {
+    font-size: 13px;
+    color: #f5a623;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.review-count {
+    font-size: 12px;
+    color: #555;
+    margin-left: 4px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    font-size: 12px;
+    color: #777;
+    margin-right: 6px;
+}
+
+.discount {
+    font-size: 12px;
+}
+
+.product-price {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.recommended-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+#recommended-slider {
+    display: flex;
+    overflow: hidden; /* changed from auto */
+    gap: 20px;
+    scroll-behavior: smooth;
+    padding: 0 10px;
+    flex: 1;
+}
+
