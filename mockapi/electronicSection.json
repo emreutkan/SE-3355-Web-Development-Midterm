@@ -1,0 +1,27 @@
+
+[
+  {
+    "image": "assets/electronics-section/p1.jpg",
+    "title": "Kablosuz Kulaklık",
+    "price": "799 TL",
+    "rating": 4.5
+  },
+  {
+    "image": "assets/electronics-section/p2.jpg",
+    "title": "Bluetooth Hoparlör",
+    "price": "599 TL",
+    "rating": 4.0
+  },
+  {
+    "image": "assets/electronics-section/p3.jpg",
+    "title": "Gaming Mouse",
+    "price": "399 TL",
+    "rating": 3.5
+  },
+  {
+    "image": "assets/electronics-section/p4.jpg",
+    "title": "Laptop Soğutucu",
+    "price": "329 TL",
+    "rating": 4.2
+  }
+]

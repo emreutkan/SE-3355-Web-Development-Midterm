@@ -1,0 +1,34 @@
+[
+  {
+    "image": "assets/mainSliderImages/main-slider-1.jpg",
+    "title": "Kampanya 1"
+  },
+  {
+    "image": "assets/mainSliderImages/main-slider-2.jpg",
+    "title": "Kampanya 2"
+  },
+  {
+    "image": "assets/mainSliderImages/main-slider-3.jpg",
+    "title": "Kampanya 3"
+  },
+  {
+    "image": "assets/mainSliderImages/main-slider-4.jpg",
+    "title": "Kampanya 4"
+  },
+  {
+    "image": "assets/mainSliderImages/main-slider-5.jpg",
+    "title": "Kampanya 5"
+  },
+  {
+    "image": "assets/mainSliderImages/main-slider-6.jpg",
+    "title": "Kampanya 6"
+  },
+  {
+    "image": "assets/mainSliderImages/main-slider-7.jpg",
+    "title": "Kampanya 7"
+  },
+  {
+    "image": "assets/mainSliderImages/main-slider-8.jpg",
+    "title": "Kampanya 8"
+  }
+]

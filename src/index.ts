@@ -15,11 +15,17 @@ const fetchQuickLinks = async () => {
             const card = document.createElement("div");
             card.className = "quick-link-card";
 
-            card.innerHTML = `
-                <div class="card-top">${item.topText}</div>
-                <div class="card-title">${item.title}</div>
-                <div class="card-category">${item.category}</div>
+            // Create an anchor element for the entire card
+            const anchor = document.createElement("a");
+            anchor.href = item.forwardLink;
+            anchor.target = "_blank"; // Open link in new tab
+            anchor.rel = "noopener noreferrer"; // Security best practice for external links
+
+            anchor.innerHTML = `
+                <img src="${item.image}" alt="Quick Link" class="quick-link-image" />
             `;
+
+            card.appendChild(anchor);
             container.appendChild(card);
         });
     } catch (err) {
