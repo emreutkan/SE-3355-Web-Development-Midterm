@@ -638,3 +638,20 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     font-size: 15px;
     font-weight: bold;
 }
+
+.recommended-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+#recommended-slider {
+    display: flex;
+    overflow: hidden; /* changed from auto */
+    gap: 20px;
+    scroll-behavior: smooth;
+    padding: 0 10px;
+    flex: 1;
+}
+

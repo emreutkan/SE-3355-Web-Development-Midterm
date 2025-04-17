@@ -1,5 +1,4 @@
-export const QUICK_LINKS_API = "https://run.mocky.io/v3/d3d75ffd-97a5-4ea5-9824-91c60faa72d8";
-
+export const QUICK_LINKS_API = "https://run.mocky.io/v3/b044a3bc-af4b-49fb-abc2-ad1a49c18cb2";
 // [
 //     { "topText": "Bu Fiyatlar Kaçmaz", "title": "Elektronik", "category": "Elektronik" },
 //     { "topText": "Fırsatlarla Dolu", "title": "Çeyiz ALIŞVERİŞİ", "category": "Alışverişe Başla" },
@@ -11,8 +10,7 @@ export const QUICK_LINKS_API = "https://run.mocky.io/v3/d3d75ffd-97a5-4ea5-9824-
 //     { "topText": "Büyük İndirim", "title": "OYUNCAK GÜNLERİ", "category": "Sevilen Oyuncaklar" }
 // ]
 
-export const SLIDER_API = "https://run.mocky.io/v3/4c61a288-d8d9-4024-81f6-fc8fbe21548a";
-
+export const SLIDER_API = "https://run.mocky.io/v3/ecea7eb7-cb25-48cc-ad1c-1444424f6add";
 // [
 //     {
 //         "image": "assets/mainSliderImages/main-slider-1.jpg",
@@ -48,8 +46,8 @@ export const SLIDER_API = "https://run.mocky.io/v3/4c61a288-d8d9-4024-81f6-fc8fb
 //     }
 // ]
 
-export const ELECTRONICS_API = "https://run.mocky.io/v3/72f0c11e-7d8e-413b-a90c-22c6ae383963";
-
+export const ELECTRONICS_API = "https://run.mocky.io/v3/4f9289cd-8ddd-4717-80c4-28004b6c0a97";
+//
 // [
 //     {
 //         "image": "assets/electronics-section/p1.jpg",
@@ -78,7 +76,7 @@ export const ELECTRONICS_API = "https://run.mocky.io/v3/72f0c11e-7d8e-413b-a90c-
 // ]
 
 
-export const RECOMMENDED_API = "https://run.mocky.io/v3/dcaa64bc-e10e-466c-8e9f-ed9e1385b40a";
+export const RECOMMENDED_API = "https://run.mocky.io/v3/922f2f8d-28ce-4d18-8a84-c7c3a03fe23a";
 // [
 //     {
 //         "id": 1,

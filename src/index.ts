@@ -216,44 +216,36 @@ const fetchRecommended = async () => {
 };
 
 const renderRecommended = (items: RecommendedItem[]) => {
-    const container = document.getElementById("recommended-section");
-    if (!container) return;
-
-    const title = document.createElement("h2");
-    title.className = "recommended-title";
-    title.textContent = "sana özel öneriler";
-
-    const wrapper = document.createElement("div");
-    wrapper.className = "recommended-list";
-
+    const wrapper = document.getElementById("recommended-slider")!;
     const favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
 
+    wrapper.innerHTML = "";
     items.forEach((item) => {
         const card = document.createElement("div");
         card.className = "recommended-card";
 
         card.innerHTML = `
-    <div class="recommended-img-wrapper">
-        <img src="${item.img}" alt="${item.title}">
-        <button class="favorite-btn">${favorites.includes(item.id) ? "♥" : "♡"}</button>
-        ${item.label ? `<div class="label-badge">${item.label.replace(/\n/g, "<br>")}</div>` : ""}
-    </div>
-    <div class="recommended-info">
-        ${item.paymentNote ? `<div class="payment-note">${item.paymentNote}</div>` : ""}
-        <p class="product-name">${item.title}</p>
-        <div class="star-review">
-            ${getStars(item.rating)}
-            <span class="review-count">(${item.votes})</span>
-        </div>
-        ${
+            <div class="recommended-img-wrapper">
+                <img src="${item.img}" alt="${item.title}">
+                <button class="favorite-btn">${favorites.includes(item.id) ? "♥" : "♡"}</button>
+                ${item.label ? `<div class="label-badge">${item.label.replace(/\n/g, "<br>")}</div>` : ""}
+            </div>
+            <div class="recommended-info">
+                ${item.paymentNote ? `<div class="payment-note">${item.paymentNote}</div>` : ""}
+                <p class="product-name">${item.title}</p>
+                <div class="star-review">
+                    ${getStars(item.rating)}
+                    <span class="review-count">(${item.votes})</span>
+                </div>
+                ${
             item.oldPrice
                 ? `<div><span class="old-price">${item.oldPrice}</span><span class="discount">%${getDiscount(item.oldPrice, item.discountedPrice)} indirim</span></div>`
                 : ""
         }
-        <p class="product-price">${item.discountedPrice}</p>
-    </div>
-    <button class="add-cart-btn">Sepete Ekle</button>
-`;
+                <p class="product-price">${item.discountedPrice}</p>
+            </div>
+            <button class="add-cart-btn">Sepete Ekle</button>
+        `;
 
         const favBtn = card.querySelector(".favorite-btn")!;
         favBtn.addEventListener("click", (e) => {
@@ -273,8 +265,44 @@ const renderRecommended = (items: RecommendedItem[]) => {
         wrapper.appendChild(card);
     });
 
-    container.append(title, wrapper);
+    setupRecommendedSlider();
 };
+
+function setupRecommendedSlider() {
+    const container = document.getElementById("recommended-slider")!;
+    const leftBtn = document.getElementById("recommended-left")!;
+    const rightBtn = document.getElementById("recommended-right")!;
+    const cards = Array.from(container.getElementsByClassName("recommended-card")) as HTMLElement[];
+
+    if (cards.length === 0) return;
+
+    const cardWidth = cards[0].offsetWidth + 20; // width + gap
+    const visibleCount = 6;
+    let currentIndex = 0;
+
+    leftBtn.addEventListener("click", () => {
+        if (currentIndex > 0) {
+            currentIndex = Math.max(currentIndex - visibleCount, 0);
+            container.scrollTo({ left: currentIndex * cardWidth, behavior: "smooth" });
+        } else {
+            currentIndex = 0;
+            container.scrollTo({ left: 0, behavior: "smooth" });
+        }
+    });
+
+    rightBtn.addEventListener("click", () => {
+        const maxIndex = cards.length - visibleCount;
+        if (currentIndex < maxIndex) {
+            currentIndex = Math.min(currentIndex + visibleCount, maxIndex);
+            container.scrollTo({ left: currentIndex * cardWidth, behavior: "smooth" });
+        } else {
+            currentIndex = 0;
+            container.scrollTo({ left: 0, behavior: "smooth" });
+        }
+    });
+}
+
+
 
 const getDiscount = (oldPrice: string, newPrice: string): number => {
     const oldNum = parseFloat(oldPrice.replace(",", ".").replace(" TL", "").replace(".", "").trim());
