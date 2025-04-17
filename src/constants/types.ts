@@ -7,6 +7,7 @@ export type QuickLink = {
 export type SliderItem = {
     image: string;
     title: string;
+    forwardLink: string;
 };
 
 
