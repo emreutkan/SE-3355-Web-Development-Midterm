@@ -1,27 +1,39 @@
-
 [
   {
     "image": "assets/electronics-section/p1.jpg",
-    "title": "Kablosuz Kulaklık",
-    "price": "799 TL",
-    "rating": 4.5
+    "title": "Grundig 50 GJU 7000 4K Ultra HD Smart LED TV",
+    "price": "16.499,00 TL",
+    "rating": 3.5,
+    "seller": "Hepsiburada",
+    "reviews": 9,
+    "forwardLink": "https://www.hepsiburada.com/grundig-50-gju-7000-b-50-126-ekran-uydu-alicili-4k-ultra-hd-smart-led-tv-p-HBCV00007V3HK2?magaza=Hepsiburada"
   },
   {
     "image": "assets/electronics-section/p2.jpg",
-    "title": "Bluetooth Hoparlör",
-    "price": "599 TL",
-    "rating": 4.0
+    "title": "Lenovo Tab M9 4GB 64GB IPS Tablet",
+    "price": "3.899,00 TL",
+    "rating": 4.7,
+    "seller": "Hepsiburada",
+    "reviews": 359,
+    "color": "Gri",
+    "forwardLink": "https://www.hepsiburada.com/lenovo-tab-m9-4gb-64gb-9-hd-ips-tablet-p-HBCV00004IJ34I?magaza=Hepsiburada"
   },
   {
     "image": "assets/electronics-section/p3.jpg",
-    "title": "Gaming Mouse",
-    "price": "399 TL",
-    "rating": 3.5
+    "title": "Samsung Galaxy Watch7 Akıllı Saat  44MM ",
+    "price": "7.310,00 TL",
+    "rating": 4.8,
+    "seller": "Hepsiburada",
+    "reviews": 307,
+    "forwardLink": "https://www.hepsiburada.com/samsung-samsung-galaxy-watch7-akilli-saat-haki-44mm-sm-l310nzgatur-samsung-turkiye-garantili-p-HBCV00006M8GIZ?magaza=Hepsiburada"
   },
   {
     "image": "assets/electronics-section/p4.jpg",
-    "title": "Laptop Soğutucu",
-    "price": "329 TL",
-    "rating": 4.2
+    "title": "LG 55QNED86T 55 4K Ultra HD Smart LED TV",
+    "price": "37.053,80 TL",
+    "rating": 4.4,
+    "seller": "Teknomix",
+    "reviews": 133,
+    "forwardLink": "https://www.hepsiburada.com/lg-55qned86t-55-139-ekran-uydu-alicili-4k-ultra-hd-smart-led-tv-p-HBCV00006G23MU?magaza=Teknomix"
   }
 ]
