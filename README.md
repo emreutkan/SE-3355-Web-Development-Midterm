@@ -1,8 +1,76 @@
-Midterm Project for Software Engineering class SE-3355 Web Development
+# SE-3355 Web Development Midterm Project - E-commerce Landing Page
+
+This project is a responsive e-commerce landing page created for the SE-3355 Web Development Midterm. The implementation is modeled after a popular Turkish e-commerce platform (Hepsiburada) and showcases various frontend development concepts including TypeScript, responsive design, API integration, and dynamic content rendering.
+
+## Assumptions
+
+- All clickable elements redirect to the original Hepsiburada website.
+- I assumed that images for the sliders, quick links, products, and electronics section were provided by the backend. Since we couldn't mock image hosting/retrieval logic using a mock API, I added images to the project source and used [mocky.io](https://mocky.io) to return the image link as a relative path. This was done instead of linking directly to Hepsiburada images, which may be deleted in the future.
+
+## Features
+
+- **Responsive Navigation Menu** – A sticky menu with dropdown submenu items  
+- **Quick Links Section** – Campaign cards fetched from mock API  
+- **Main Product Slider** – Carousel featuring products and campaigns  
+- **Electronics Deals Section** – Rotating products with prices every 3 seconds  
+- **Personalized Recommendations** – Product cards with price and review ratings  
+
+## Technologies Used
+
+- HTML5  
+- CSS3  
+- TypeScript  
+- Fetch API  
+- [mocky.io](https://mocky.io) for simulating backend APIs
+
+## Project Structure
+
+/src/     - TypeScript source files
+/dist/    - Compiled JavaScript output
+/styles/  - CSS stylesheets
+/assets/  - Static images and resources
+
+## Setup and Deployment
+
+1. Clone the repository  
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Compile the project:
+
+   ```bash
+   npm run build
+   ```
+
+4. Open `index.html` in your browser to view it locally
+
+## Live Demo
+
+👉 [https://emreutkan.github.io/se-3355-web-development-midterm-1/](https://emreutkan.github.io/se-3355-web-development-midterm-1/)
+
+## API Integration
+
+The project uses mock APIs from [mocky.io](https://designer.mocky.io/) to simulate:
+
+- Quick links  
+- Slider content  
+- Electronics deals  
+- Recommended products
 
 
+## Project Requirements
 
-```aiignore
+This project fulfills the following:
 
+- Sticky, responsive menu with 2 items having at least 3 submenus each  
+- Quick Links section with at least 8 campaigns (from mock API)  
+- Main slider with 10+ products or campaigns (from mock API)  
+- "Elektronik Fırsatlar" section showing 3 rotating products with prices  
+- "Sana Özel Öneriler" section with 5+ products with price and rating
 
-```
+## Contributors
+
+Created by **İrfan Emre Utkan** for **Group 2**, SE-3355 Web Development course.
