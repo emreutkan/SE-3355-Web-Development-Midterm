@@ -15,11 +15,10 @@ const fetchQuickLinks = async () => {
             const card = document.createElement("div");
             card.className = "quick-link-card";
 
-            // Create an anchor element for the entire card
             const anchor = document.createElement("a");
             anchor.href = item.forwardLink;
-            anchor.target = "_blank"; // Open link in new tab
-            anchor.rel = "noopener noreferrer"; // Security best practice for external links
+            anchor.target = "_blank";
+            anchor.rel = "noopener noreferrer";
 
             anchor.innerHTML = `
                 <img src="${item.image}" alt="Quick Link" class="quick-link-image" />
@@ -40,6 +39,7 @@ fetchQuickLinks();
 // ---------------------
 let currentSlide = 0;
 let totalSlides = 0;
+let sliderAutoPlayInterval: number;
 
 const fetchMainSlider = async () => {
     try {
@@ -55,11 +55,19 @@ const fetchMainSlider = async () => {
             div.className = "slider-item";
             if (index === 0) div.classList.add("active");
 
-            div.innerHTML = `<img src="${item.image}" alt="${item.title}" />`;
+            const anchor = document.createElement("a");
+            anchor.href = item.forwardLink;
+            anchor.target = "_blank";
+            anchor.rel = "noopener noreferrer";
+
+            anchor.innerHTML = `<img src="${item.image}" alt="${item.title}" />`;
+
+            div.appendChild(anchor);
             track.appendChild(div);
         });
 
         setupSliderControls();
+        startSliderAutoPlay();
     } catch (err) {
         console.error("Slider fetch error:", err);
     }
@@ -73,6 +81,7 @@ const setupSliderControls = () => {
     const rightBtn = document.getElementById("slide-right")!;
 
     const goToSlide = (index: number) => {
+        currentSlide = index;
         const slides = Array.from(track.children);
         slides.forEach(slide => slide.classList.remove("active"));
         if (slides[index]) slides[index].classList.add("active");
@@ -84,14 +93,40 @@ const setupSliderControls = () => {
     };
 
     leftBtn.addEventListener("click", () => {
+        resetSliderAutoPlay();
         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
         goToSlide(currentSlide);
     });
 
     rightBtn.addEventListener("click", () => {
+        resetSliderAutoPlay();
         currentSlide = (currentSlide + 1) % totalSlides;
         goToSlide(currentSlide);
     });
+
+    window.goToNextSlide = () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        goToSlide(currentSlide);
+    };
+};
+
+const startSliderAutoPlay = () => {
+    if (sliderAutoPlayInterval) {
+        clearInterval(sliderAutoPlayInterval);
+    }
+
+    sliderAutoPlayInterval = setInterval(() => {
+        if (typeof window.goToNextSlide === 'function') {
+            window.goToNextSlide();
+        }
+    }, 3000);
+};
+
+const resetSliderAutoPlay = () => {
+    if (sliderAutoPlayInterval) {
+        clearInterval(sliderAutoPlayInterval);
+    }
+    startSliderAutoPlay();
 };
 
 fetchMainSlider();
@@ -317,3 +352,9 @@ const getDiscount = (oldPrice: string, newPrice: string): number => {
 };
 
 fetchRecommended();
+
+declare global {
+    interface Window {
+        goToNextSlide: () => void;
+    }
+}

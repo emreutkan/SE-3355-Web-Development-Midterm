@@ -10,11 +10,11 @@ export const QUICK_LINKS_API = "https://run.mocky.io/v3/634f9c7d-7c91-46da-96ed-
 //     },
 //     {
 //         "image": "assets/quickLinks/ql3.png",
-//         "forwardLink": "https://giris.hepsiburada.com/?ReturnUrl=https%3A%2F%2Foauth.hepsiburada.com%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DSPA%26redirect_uri%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fuyelik%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%26state%3D638fed27cbe64cca8a21ab557896b580%26code_challenge%3De-heIGRvZq5KdR5aW5SNVDLacXjOPjMtugXmsRfCoq8%26code_challenge_method%3DS256%26response_mode%3Dquery%26ActivePage%3DPURE_LOGIN%26oidcReturnUrl%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fcuzdanim%252F%253Fpage%253Dwallet%2526mobilepage%253Dwallet%2526tab%253Dfinvest%2526trackingId%253D12626236"
+//         "forwardLink": "https://giris.hepsiburada.com/?ReturnUrl=https%3A%2F%2Foauth.hepsiburada.com%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DSPA%26redirect_uri%3Dhttps%253A%252F%252Fwww.[...]
 //     },
 //     {
 //         "image": "assets/quickLinks/ql4.png",
-//         "forwardLink": "https://giris.hepsiburada.com/?ReturnUrl=https%3A%2F%2Foauth.hepsiburada.com%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DSPA%26redirect_uri%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fuyelik%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%26state%3D5a3fb12cb9b849e68c60eee4e7ce25a7%26code_challenge%3De4ujDxMrfGLQvWtGA0WJERlMhnlSc9EL86ounYPVr9w%26code_challenge_method%3DS256%26response_mode%3Dquery%26ActivePage%3DPURE_LOGIN%26oidcReturnUrl%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fcuzdanim%252F%253Fpage%253DCashLoanFormPage%2526mobilepage%253Dcashloanform%2526trackingId%253D12626422"
+//         "forwardLink": "https://giris.hepsiburada.com/?ReturnUrl=https%3A%2F%2Foauth.hepsiburada.com%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DSPA%26redirect_uri%3Dhttps%253A%252F%252Fwww.[...]
 //     },
 //     {
 //         "image": "assets/quickLinks/ql5.png",
@@ -50,39 +50,57 @@ export const QUICK_LINKS_API = "https://run.mocky.io/v3/634f9c7d-7c91-46da-96ed-
 //     }
 // ]
 
-export const SLIDER_API = "https://run.mocky.io/v3/3a6da740-e140-439a-82ce-050dd9b6ecd7";
+export const SLIDER_API = "https://run.mocky.io/v3/bfab3652-9406-401c-a83a-e44f84517989";
 // [
 //     {
-//         "image": "assets/mainSliderImages/main-slider-1.jpg",
-//         "title": "Kampanya 1"
+//         "image": "assets/mainSliderImages/ms1.jpg",
+//         "title": "Premium Nisan İndirimleri",
+//         "forwardLink": "https://www.hepsiburada.com/dv/premium-nisan-indirimleri?trackingId=12689040"
 //     },
 //     {
-//         "image": "assets/mainSliderImages/main-slider-2.jpg",
-//         "title": "Kampanya 2"
+//         "image": "assets/mainSliderImages/ms2.jpg",
+//         "title": "Premium'a Özel 700 TL Üzerine 15% İndirim",
+//         "forwardLink": "https://www.hepsiburada.com/kampanyalar/premiuma-ozel-700-tl-uzerine-15-indirim?trackingId=12670143"
 //     },
 //     {
-//         "image": "assets/mainSliderImages/main-slider-3.jpg",
-//         "title": "Kampanya 3"
+//         "image": "assets/mainSliderImages/ms3.jpg",
+//         "title": "Elektronik Fırsatları",
+//         "forwardLink": "https://www.hepsiburada.com/dv/elektronik-firsatlari?trackingId=12624501"
 //     },
 //     {
-//         "image": "assets/mainSliderImages/main-slider-4.jpg",
-//         "title": "Kampanya 4"
+//         "image": "assets/mainSliderImages/ms4.jpg",
+//         "title": "Bella Maison Ürünlerinde Kaçırılmayacak Fırsatlar",
+//         "forwardLink": "https://www.hepsiburada.com/kampanyalar/bella-maison-urunlerinde-kacirilmayacak-firsatlar?trackingId=12676530"
 //     },
 //     {
-//         "image": "assets/mainSliderImages/main-slider-5.jpg",
-//         "title": "Kampanya 5"
+//         "image": "assets/mainSliderImages/ms5.jpg",
+//         "title": "Çok Konuşturan Fırsatlar",
+//         "forwardLink": "https://www.hepsiburada.com/dv/cok-konusturan-firsatlar?trackingId=12646585"
 //     },
 //     {
-//         "image": "assets/mainSliderImages/main-slider-6.jpg",
-//         "title": "Kampanya 6"
+//         "image": "assets/mainSliderImages/ms6.jpg",
+//         "title": "Aptamil Markalı Ürünlerde Fırsatlar",
+//         "forwardLink": "https://www.hepsiburada.com/kampanyalar/aptamil-markali-urunlerdefirsatlar?trackingId=12693642"
 //     },
 //     {
-//         "image": "assets/mainSliderImages/main-slider-7.jpg",
-//         "title": "Kampanya 7"
+//         "image": "assets/mainSliderImages/ms7.jpg",
+//         "title": "Beyaz Eşyalarda Haftanın Enleri",
+//         "forwardLink": "https://www.hepsiburada.com/dv/beyaz-esyalarda-haftanin-enleri?trackingId=12693638"
 //     },
 //     {
-//         "image": "assets/mainSliderImages/main-slider-8.jpg",
-//         "title": "Kampanya 8"
+//         "image": "assets/mainSliderImages/ms8.jpg",
+//         "title": "GAP Çocuk Ürünleri Fırsatları",
+//         "forwardLink": "https://www.hepsiburada.com/kampanyalar/gap-cocuk-urunleri-firsatlari?trackingId=12696780"
+//     },
+//     {
+//         "image": "assets/mainSliderImages/ms9.jpg",
+//         "title": "Gıda İçecek Ürünlerinde Fırsatlar",
+//         "forwardLink": "https://www.hepsiburada.com/dv/gida-icecek-urunlerinde-firsatlar?trackingId=12695976"
+//     },
+//     {
+//         "image": "assets/mainSliderImages/ms10.jpg",
+//         "title": "Honor Magic 7 Lite Burada",
+//         "forwardLink": "https://www.hepsiburada.com/kampanyalar/honor-magic-7-lite-burada?trackingId=12625998"
 //     }
 // ]
 
