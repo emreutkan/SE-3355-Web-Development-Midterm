@@ -23,7 +23,6 @@ body {
     position: relative;
     top: 0;
     z-index: 999;
-
     border-bottom: 1px solid #ddd;
 
 
@@ -32,9 +31,9 @@ body {
     display: flex;
     align-items: center;
     list-style: none;
-    padding: 10px 10px;
+    padding: 12px ;
     overflow: visible;
-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     justify-content: center;
 
 }
@@ -46,8 +45,8 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     font-size: 14px;
     text-align: center;
     white-space: nowrap;
-    padding: 0 20px;
-    line-height: 1.4;
+    padding: 0 16px;
+    /*line-height: 1.2;*/
     cursor: pointer;
     position: relative;
 
@@ -126,13 +125,14 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
 .quick-links {
     display: flex;
-    gap: 12px;
+    gap: 19px;
     padding: 20px ;
-    overflow-x: auto;
     background-color: white;
     scroll-behavior: smooth;
     cursor: grab;
     justify-content: center;
+    overflow-y: hidden;
+    overflow-x: hidden;
 
 }
 
@@ -144,12 +144,29 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 .quick-link-card {
     background-color: #fff;
     border-radius: 8px;
-    width: 120px;
+    width: 92px;
+    height: 90px;
     flex-shrink: 0;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     text-align: center;
     font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.quick-link-card a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.quick-link-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .card-top {
@@ -648,10 +665,9 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
 #recommended-slider {
     display: flex;
-    overflow: hidden; /* changed from auto */
+    overflow: hidden;
     gap: 20px;
     scroll-behavior: smooth;
     padding: 0 10px;
     flex: 1;
 }
-

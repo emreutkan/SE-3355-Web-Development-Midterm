@@ -1,16 +1,56 @@
-export const QUICK_LINKS_API = "https://run.mocky.io/v3/b044a3bc-af4b-49fb-abc2-ad1a49c18cb2";
+export const QUICK_LINKS_API = "https://run.mocky.io/v3/634f9c7d-7c91-46da-96ed-21745805b980";
 // [
-//     { "topText": "Bu Fiyatlar Kaçmaz", "title": "Elektronik", "category": "Elektronik" },
-//     { "topText": "Fırsatlarla Dolu", "title": "Çeyiz ALIŞVERİŞİ", "category": "Alışverişe Başla" },
-//     { "topText": "Kredi Limitini Gör", "title": "%0'DAN BAŞLAYAN FAİZ", "category": "Hepsipay" },
-//     { "topText": "İndirimli Fiyatlar", "title": "DÖRT DÖRTLÜK FIRSATLAR", "category": "Alışverişe Başla" },
-//     { "topText": "Fırsatları Keşfet", "title": "ALIŞVERİŞİN TOP LİSTESİ", "category": "Sevilen Ürünler" },
-//     { "topText": "Her Pazar Fırsat Var", "title": "NET İNDİRİM PAZARI", "category": "Sakın Kaçırma" },
-//     { "topText": "Aradığın Fırsatlar", "title": "Ev Elektroniği", "category": "Elektronik" },
-//     { "topText": "Büyük İndirim", "title": "OYUNCAK GÜNLERİ", "category": "Sevilen Oyuncaklar" }
+//     {
+//         "image": "assets/quickLinks/ql1.png",
+//         "forwardLink": "https://www.hepsiburada.com/dv/premium-nisan-indirimleri?trackingId=12626027"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql2.png",
+//         "forwardLink": "https://www.hepsiburada.com/dv/premium-kuponlari?trackingId=12626109"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql3.png",
+//         "forwardLink": "https://giris.hepsiburada.com/?ReturnUrl=https%3A%2F%2Foauth.hepsiburada.com%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DSPA%26redirect_uri%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fuyelik%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%26state%3D638fed27cbe64cca8a21ab557896b580%26code_challenge%3De-heIGRvZq5KdR5aW5SNVDLacXjOPjMtugXmsRfCoq8%26code_challenge_method%3DS256%26response_mode%3Dquery%26ActivePage%3DPURE_LOGIN%26oidcReturnUrl%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fcuzdanim%252F%253Fpage%253Dwallet%2526mobilepage%253Dwallet%2526tab%253Dfinvest%2526trackingId%253D12626236"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql4.png",
+//         "forwardLink": "https://giris.hepsiburada.com/?ReturnUrl=https%3A%2F%2Foauth.hepsiburada.com%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DSPA%26redirect_uri%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fuyelik%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%26state%3D5a3fb12cb9b849e68c60eee4e7ce25a7%26code_challenge%3De4ujDxMrfGLQvWtGA0WJERlMhnlSc9EL86ounYPVr9w%26code_challenge_method%3DS256%26response_mode%3Dquery%26ActivePage%3DPURE_LOGIN%26oidcReturnUrl%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fcuzdanim%252F%253Fpage%253DCashLoanFormPage%2526mobilepage%253Dcashloanform%2526trackingId%253D12626422"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql5.png",
+//         "forwardLink": "https://www.hepsiburada.com/dv/dort-dort-kampanya?trackingId=12626052"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql6.png",
+//         "forwardLink": "https://www.hepsiburada.com/dv/alisverisin-top-listesi?trackingId=12626054"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql7.png",
+//         "forwardLink": "https://www.hepsiburada.com/dv/ceyiz-paketleri?trackingId=12671814"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql8.png",
+//         "forwardLink": "https://www.hepsiburada.com/kampanyalar/tefal-markali-urunlerde-bugune-ozel-firsatlar?trackingId=12665438"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql9.png",
+//         "forwardLink": "https://www.hepsiburada.com/kampanyalar/pasabahce-urunlerinde-kacirilmaz-firsatlar?trackingId=12669947"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql10.png",
+//         "forwardLink": "https://www.hepsiburada.com/dv/elektronik-firsatlari?trackingId=12680215"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql11.png",
+//         "forwardLink": "https://www.hepsiburada.com/kampanyalar/guzellikte-1200-300-indirim-kuponu?trackingId=12626548"
+//     },
+//     {
+//         "image": "assets/quickLinks/ql12.png",
+//         "forwardLink": "https://www.hepsiburada.com/kampanyalar/800-200-spm-kupon?siralama=coksatan&trackingId=12650219"
+//     }
 // ]
 
-export const SLIDER_API = "https://run.mocky.io/v3/ecea7eb7-cb25-48cc-ad1c-1444424f6add";
+export const SLIDER_API = "https://run.mocky.io/v3/3a6da740-e140-439a-82ce-050dd9b6ecd7";
 // [
 //     {
 //         "image": "assets/mainSliderImages/main-slider-1.jpg",
@@ -46,7 +86,7 @@ export const SLIDER_API = "https://run.mocky.io/v3/ecea7eb7-cb25-48cc-ad1c-14444
 //     }
 // ]
 
-export const ELECTRONICS_API = "https://run.mocky.io/v3/4f9289cd-8ddd-4717-80c4-28004b6c0a97";
+export const ELECTRONICS_API = "https://run.mocky.io/v3/a47aaf78-80d8-4ef4-97a5-3d8c30e44434";
 //
 // [
 //     {
@@ -76,7 +116,7 @@ export const ELECTRONICS_API = "https://run.mocky.io/v3/4f9289cd-8ddd-4717-80c4-
 // ]
 
 
-export const RECOMMENDED_API = "https://run.mocky.io/v3/922f2f8d-28ce-4d18-8a84-c7c3a03fe23a";
+export const RECOMMENDED_API = "https://run.mocky.io/v3/2916e213-5981-4657-a45e-b7c609f061cb";
 // [
 //     {
 //         "id": 1,

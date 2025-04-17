@@ -1,0 +1,62 @@
+[
+  {
+    "image": "assets/quickLinks/ql1.png",
+    "title": "Elektronik",
+    "forwardLink": "https://www.hepsiburada.com/dv/premium-nisan-indirimleri?trackingId=12626027"
+  },
+  {
+    "image": "assets/quickLinks/ql2.png",
+    "title": "Çeyiz ALIŞVERİŞİ",
+    "forwardLink": "https://www.hepsiburada.com/dv/premium-kuponlari?trackingId=12626109"
+  },
+  {
+    "image": "assets/quickLinks/ql3.png",
+    "title": "%0'DAN BAŞLAYAN FAİZ",
+    "forwardLink": "https://giris.hepsiburada.com/?ReturnUrl=https%3A%2F%2Foauth.hepsiburada.com%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DSPA%26redirect_uri%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fuyelik%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%26state%3D638fed27cbe64cca8a21ab557896b580%26code_challenge%3De-heIGRvZq5KdR5aW5SNVDLacXjOPjMtugXmsRfCoq8%26code_challenge_method%3DS256%26response_mode%3Dquery%26ActivePage%3DPURE_LOGIN%26oidcReturnUrl%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fcuzdanim%252F%253Fpage%253Dwallet%2526mobilepage%253Dwallet%2526tab%253Dfinvest%2526trackingId%253D12626236"
+  },
+  {
+    "image": "assets/quickLinks/ql4.png",
+    "title": "DÖRT DÖRTLÜK FIRSATLAR",
+    "forwardLink": "https://giris.hepsiburada.com/?ReturnUrl=https%3A%2F%2Foauth.hepsiburada.com%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DSPA%26redirect_uri%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fuyelik%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%26state%3D5a3fb12cb9b849e68c60eee4e7ce25a7%26code_challenge%3De4ujDxMrfGLQvWtGA0WJERlMhnlSc9EL86ounYPVr9w%26code_challenge_method%3DS256%26response_mode%3Dquery%26ActivePage%3DPURE_LOGIN%26oidcReturnUrl%3Dhttps%253A%252F%252Fwww.hepsiburada.com%252Fcuzdanim%252F%253Fpage%253DCashLoanFormPage%2526mobilepage%253Dcashloanform%2526trackingId%253D12626422"
+  },
+  {
+    "image": "assets/quickLinks/ql5.png",
+    "title": "ALIŞVERİŞİN TOP LİSTESİ",
+    "forwardLink": "https://www.hepsiburada.com/dv/dort-dort-kampanya?trackingId=12626052"
+  },
+  {
+    "image": "assets/quickLinks/ql6.png",
+    "title": "NET İNDİRİM PAZARI",
+    "forwardLink": "https://www.hepsiburada.com/dv/alisverisin-top-listesi?trackingId=12626054"
+  },
+  {
+    "image": "assets/quickLinks/ql7.png",
+    "title": "Ev Elektroniği",
+    "forwardLink": "https://www.hepsiburada.com/dv/ceyiz-paketleri?trackingId=12671814"
+  },
+  {
+    "image": "assets/quickLinks/ql8.png",
+    "title": "OYUNCAK GÜNLERİ",
+    "forwardLink": "https://www.hepsiburada.com/kampanyalar/tefal-markali-urunlerde-bugune-ozel-firsatlar?trackingId=12665438"
+  },
+  {
+    "image": "assets/quickLinks/ql9.png",
+    "title": "Mutfak Fırsatları",
+    "forwardLink": "https://www.hepsiburada.com/kampanyalar/pasabahce-urunlerinde-kacirilmaz-firsatlar?trackingId=12669947"
+  },
+  {
+    "image": "assets/quickLinks/ql10.png",
+    "title": "Elektronik Fırsatlar",
+    "forwardLink": "https://www.hepsiburada.com/dv/elektronik-firsatlari?trackingId=12680215"
+  },
+  {
+    "image": "assets/quickLinks/ql11.png",
+    "title": "Güzellikte İndirim",
+    "forwardLink": "https://www.hepsiburada.com/kampanyalar/guzellikte-1200-300-indirim-kuponu?trackingId=12626548"
+  },
+  {
+    "image": "assets/quickLinks/ql12.png",
+    "title": "Süper İndirimler",
+    "forwardLink": "https://www.hepsiburada.com/kampanyalar/800-200-spm-kupon?siralama=coksatan&trackingId=12650219"
+  }
+]
