@@ -1,8 +1,9 @@
 # SE-3355 Web Development Midterm Project - E-commerce Landing Page
 
-This project is a responsive e-commerce landing page created for the SE-3355 Web Development Midterm. The implementation is modeled after a popular Turkish e-commerce platform (Hepsiburada) and showcases various frontend development concepts including TypeScript, responsive design, API integration, and dynamic content rendering.
+This project is a responsive e-commerce landing page created for the SE-3355 Web Development Midterm. The implementation is modeled after a popular Turkish e-commerce platform (Hepsiburada) 
 
 ## Assumptions
+
 
 - All clickable elements redirect to the original Hepsiburada website.
 - I assumed that images for the sliders, quick links, products, and electronics section were provided by the backend. Since we couldn't mock image hosting/retrieval logic using a mock API, I added images to the project source and used [mocky.io](https://mocky.io) to return the image link as a relative path. This was done instead of linking directly to Hepsiburada images, which may be deleted in the future.
@@ -19,33 +20,14 @@ This project is a responsive e-commerce landing page created for the SE-3355 Web
 
 - HTML5  
 - CSS3  
-- TypeScript  
+- JavaScript (ES6+) 
 - Fetch API  
 - [mocky.io](https://mocky.io) for simulating backend APIs
 
-## Project Structure
 
-/src/     - TypeScript source files
-/dist/    - Compiled JavaScript output
-/styles/  - CSS stylesheets
-/assets/  - Static images and resources
+## local Development
 
-## Setup and Deployment
-
-1. Clone the repository  
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Compile the project:
-
-   ```bash
-   npm run build
-   ```
-
-4. Open `index.html` in your browser to view it locally
+Open `index.html` in your browser to view it locally
 
 ## Live Demo
 
