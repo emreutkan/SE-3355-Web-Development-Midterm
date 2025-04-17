@@ -1,9 +1,6 @@
 import { ELECTRONICS_API, QUICK_LINKS_API, RECOMMENDED_API, SLIDER_API } from "./constants/api.js";
 import { DealItem, QuickLink, RecommendedItem, SliderItem } from "./constants/types.js";
 
-// ---------------------
-// QUICK LINKS FETCH
-// ---------------------
 const fetchQuickLinks = async () => {
     try {
         const res = await fetch(QUICK_LINKS_API);
@@ -34,9 +31,6 @@ const fetchQuickLinks = async () => {
 
 fetchQuickLinks();
 
-// ---------------------
-// MAIN SLIDER FETCH & SETUP
-// ---------------------
 let currentSlide = 0;
 let totalSlides = 0;
 let sliderAutoPlayInterval: number;
@@ -131,9 +125,9 @@ const resetSliderAutoPlay = () => {
 
 fetchMainSlider();
 
-// ---------------------
-// ELECTRONICS DEALS FETCH
-// ---------------------
+let electronicsAutoPlayInterval: number;
+let currentElectronicsIndex = 0;
+
 const fetchElectronicsDeals = async () => {
     try {
         const res = await fetch(ELECTRONICS_API);
@@ -142,9 +136,8 @@ const fetchElectronicsDeals = async () => {
         if (!container) return;
 
         container.innerHTML = "";
-        const visible = data.slice(0, 3);
 
-        visible.forEach(item => {
+        data.forEach(item => {
             const card = document.createElement("div");
             card.className = "deal-card";
 
@@ -153,9 +146,12 @@ const fetchElectronicsDeals = async () => {
                 : "";
 
             const stars = getStars(item.rating);
-            const addToCartBtn = `<button class="add-to-cart">Sepete Ekle</button>`;
 
-            card.innerHTML = `
+            const reviewsInfo = item.reviews
+                ? `<div class="reviews-info">${item.reviews} Değerlendirme</div>`
+                : "";
+
+            const cardContent = `
               <div class="deal-card-image">
                 <img src="${item.image}" alt="${item.title}" />
               </div>
@@ -164,20 +160,50 @@ const fetchElectronicsDeals = async () => {
                 <h3>${item.title}</h3>
                 <div class="star-review">
                     ${stars}
+                    <span class="review-count">${reviewsInfo}</span>
                 </div>
-                <p>${item.price}</p>
-                ${addToCartBtn}
+                <p class="product-price">${item.price}</p>
+                <button class="add-to-cart">Sepete Ekle</button>
               </div>
             `;
 
-            card.querySelector(".add-to-cart")?.addEventListener("click", () => {
-                alert(`${item.title} sepete eklendi!`);
-            });
+            if (item.forwardLink) {
+                const wrapper = document.createElement("a");
+                wrapper.href = item.forwardLink;
+                wrapper.target = "_blank";
+                wrapper.rel = "noopener noreferrer";
+                wrapper.style.textDecoration = "none";
+                wrapper.style.color = "inherit";
+                wrapper.style.display = "flex";
+                wrapper.style.width = "100%";
+                wrapper.style.height = "100%";
+                wrapper.innerHTML = cardContent;
+
+                const addToCartBtn = wrapper.querySelector(".add-to-cart");
+                if (addToCartBtn) {
+                    addToCartBtn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        alert(`${item.title} sepete eklendi!`);
+                    });
+                }
+
+                card.appendChild(wrapper);
+            } else {
+                card.innerHTML = cardContent;
+                const addToCartBtn = card.querySelector(".add-to-cart");
+                if (addToCartBtn) {
+                    addToCartBtn.addEventListener("click", () => {
+                        alert(`${item.title} sepete eklendi!`);
+                    });
+                }
+            }
 
             container.appendChild(card);
         });
 
         setupElectronicsSlider();
+        startElectronicsAutoPlay();
     } catch (err) {
         console.error("Electronics fetch error:", err);
     }
@@ -199,51 +225,72 @@ function setupElectronicsSlider() {
     const cards = Array.from(sliderTrack.children) as HTMLElement[];
     const totalCards = cards.length;
 
-    let currentIndex = 0;
+    if (totalCards === 0) return;
+
+    currentElectronicsIndex = 0;
     const GAP = 12;
 
     const updateSliderButtons = () => {
-        leftBtn.style.display = currentIndex === 0 ? "none" : "block";
+        leftBtn.style.display = currentElectronicsIndex === 0 ? "none" : "block";
+        rightBtn.style.display = "block";
     };
 
-    const centerCard = (index: number) => {
+    const goToCard = (index: number) => {
         if (!sliderContainer || !sliderTrack || cards.length === 0) return;
 
-        if (index === 0) {
+        currentElectronicsIndex = (index + totalCards) % totalCards;
+
+        if (currentElectronicsIndex === 0) {
             sliderTrack.style.transform = `translateX(0px)`;
-            return;
+        } else {
+            const containerWidth = sliderContainer.getBoundingClientRect().width;
+            const cardWidth = cards[0].getBoundingClientRect().width;
+            const cardCenter = currentElectronicsIndex * (cardWidth + GAP) + (cardWidth / 2);
+            const offset = (containerWidth / 2) - cardCenter;
+            sliderTrack.style.transform = `translateX(${offset}px)`;
         }
 
-        const containerWidth = sliderContainer.getBoundingClientRect().width;
-        const cardWidth = cards[index].getBoundingClientRect().width;
-        const cardCenter = index * (cardWidth + GAP) + (cardWidth / 2);
-        const offset = (containerWidth / 2) - cardCenter;
-        sliderTrack.style.transform = `translateX(${offset}px)`;
+        updateSliderButtons();
+
+        resetElectronicsAutoPlay();
     };
 
     leftBtn.addEventListener("click", () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            centerCard(currentIndex);
-            updateSliderButtons();
-        }
+        goToCard(currentElectronicsIndex - 1);
     });
 
     rightBtn.addEventListener("click", () => {
-        if (currentIndex < totalCards - 1) {
-            currentIndex++;
-            centerCard(currentIndex);
-            updateSliderButtons();
-        }
+        goToCard(currentElectronicsIndex + 1);
     });
 
-    centerCard(currentIndex);
+    goToCard(0);
+
     updateSliderButtons();
+
+    window.goToNextElectronicsCard = () => {
+        goToCard(currentElectronicsIndex + 1);
+    };
 }
 
-// ---------------------
-// RECOMMENDED PRODUCTS
-// ---------------------
+const startElectronicsAutoPlay = () => {
+    if (electronicsAutoPlayInterval) {
+        clearInterval(electronicsAutoPlayInterval);
+    }
+
+    electronicsAutoPlayInterval = setInterval(() => {
+        if (typeof window.goToNextElectronicsCard === 'function') {
+            window.goToNextElectronicsCard();
+        }
+    }, 3000);
+};
+
+const resetElectronicsAutoPlay = () => {
+    if (electronicsAutoPlayInterval) {
+        clearInterval(electronicsAutoPlayInterval);
+    }
+    startElectronicsAutoPlay();
+};
+
 const FAVORITES_KEY = "recommendedFavorites";
 
 const fetchRecommended = async () => {
@@ -265,7 +312,7 @@ const renderRecommended = (items: RecommendedItem[]) => {
         const card = document.createElement("div");
         card.className = "recommended-card";
 
-        card.innerHTML = `
+        const cardHTML = `
             <div class="recommended-img-wrapper">
                 <img src="${item.img}" alt="${item.title}">
                 <button class="favorite-btn">${favorites.includes(item.id) ? "♥" : "♡"}</button>
@@ -284,24 +331,69 @@ const renderRecommended = (items: RecommendedItem[]) => {
                 : ""
         }
                 <p class="product-price">${item.discountedPrice}</p>
+                ${item.cartPrice ? `<p class="cart-price">${item.cartPrice}</p>` : ""}
+                ${item.extra ? `<p class="extra-info">${item.extra}</p>` : ""}
             </div>
             <button class="add-cart-btn">Sepete Ekle</button>
         `;
 
-        const favBtn = card.querySelector(".favorite-btn")!;
-        favBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const index = favorites.indexOf(item.id);
-            if (index > -1) {
-                favorites.splice(index, 1);
-                favBtn.textContent = "♡";
-            } else {
-                favorites.push(item.id);
-                favBtn.textContent = "♥";
-            }
-            localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
-        });
+        if (item.forwardLink) {
+            const wrapper = document.createElement("a");
+            wrapper.href = item.forwardLink;
+            wrapper.target = "_blank";
+            wrapper.rel = "noopener noreferrer";
+            wrapper.style.textDecoration = "none";
+            wrapper.style.color = "inherit";
+            wrapper.style.display = "block";
+            wrapper.style.height = "100%";
+            wrapper.innerHTML = cardHTML;
+
+            card.appendChild(wrapper);
+
+            const favBtn = card.querySelector(".favorite-btn")!;
+            favBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const index = favorites.indexOf(item.id);
+                if (index > -1) {
+                    favorites.splice(index, 1);
+                    favBtn.textContent = "♡";
+                } else {
+                    favorites.push(item.id);
+                    favBtn.textContent = "♥";
+                }
+                localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+            });
+
+            const addCartBtn = card.querySelector(".add-cart-btn")!;
+            addCartBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                alert(`${item.title} sepete eklendi!`);
+            });
+        } else {
+            card.innerHTML = cardHTML;
+
+            const favBtn = card.querySelector(".favorite-btn")!;
+            favBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const index = favorites.indexOf(item.id);
+                if (index > -1) {
+                    favorites.splice(index, 1);
+                    favBtn.textContent = "♡";
+                } else {
+                    favorites.push(item.id);
+                    favBtn.textContent = "♥";
+                }
+                localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+            });
+
+            const addCartBtn = card.querySelector(".add-cart-btn")!;
+            addCartBtn.addEventListener("click", () => {
+                alert(`${item.title} sepete eklendi!`);
+            });
+        }
 
         wrapper.appendChild(card);
     });
@@ -317,7 +409,7 @@ function setupRecommendedSlider() {
 
     if (cards.length === 0) return;
 
-    const cardWidth = cards[0].offsetWidth + 20; // width + gap
+    const cardWidth = cards[0].offsetWidth + 20;
     const visibleCount = 6;
     let currentIndex = 0;
 
@@ -343,8 +435,6 @@ function setupRecommendedSlider() {
     });
 }
 
-
-
 const getDiscount = (oldPrice: string, newPrice: string): number => {
     const oldNum = parseFloat(oldPrice.replace(",", ".").replace(" TL", "").replace(".", "").trim());
     const newNum = parseFloat(newPrice.replace(",", ".").replace(" TL", "").replace(".", "").trim());
@@ -356,5 +446,6 @@ fetchRecommended();
 declare global {
     interface Window {
         goToNextSlide: () => void;
+        goToNextElectronicsCard: () => void;
     }
 }

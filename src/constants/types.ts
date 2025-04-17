@@ -12,6 +12,7 @@ export type SliderItem = {
 
 
 export interface DealItem {
+    forwardLink: string;
     id: number;
     title: string;
     price: string;
@@ -20,9 +21,13 @@ export interface DealItem {
     couponText?: string;
     buttonText?: string;
     specialBackground?: string;
+    seller?: string;
+    reviews?: number;
+    color?: string;
 }
 
 export interface RecommendedItem {
+    forwardLink: string;
     id: number;
     title: string;
     img: string;
