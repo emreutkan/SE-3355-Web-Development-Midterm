@@ -73,4 +73,4 @@ This project fulfills the following:
 
 ## Contributors
 
-Created by **İrfan Emre Utkan** for **Group 2**, SE-3355 Web Development course.
+Created by **İrfan Emre Utkan** for **Group 2**, SE-3355 Web Development course. 
