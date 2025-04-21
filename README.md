@@ -31,7 +31,7 @@ Open `index.html` in your browser to view it locally
 
 ## Live Demo
 
-👉 [https://emreutkan.github.io/se-3355-web-development-midterm-1/](https://emreutkan.github.io/se-3355-web-development-midterm-1/)
+👉 https://emreutkan.github.io/SE-3355-Web-Development-Midterm/
 
 ## API Integration
 
